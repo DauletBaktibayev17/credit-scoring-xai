@@ -1,0 +1,29 @@
+[project]
+name = "credit-scoring-xai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "DauletBaktibayev", email = "daulet20.b@gmail.com" }
+]
+requires-python = ">=3.11"
+dependencies = [
+    "catboost>=1.2.10",
+    "fastapi>=0.165.0",
+    "jupyter>=1.1.1",
+    "lightgbm>=4.7.0",
+    "numpy>=2.4.6",
+    "optuna>=5.1.0",
+    "pandas>=3.1.1",
+    "scikit-learn>=1.9.1",
+    "shap>=0.51.0",
+    "streamlit>=1.67.0",
+    "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+credit-scoring-xai = "credit_scoring_xai:main"
+
+[build-system]
+requires = ["uv_build>=0.13.9,<0.14.0"]
+build-backend = "uv_build"
