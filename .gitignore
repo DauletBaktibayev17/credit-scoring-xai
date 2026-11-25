@@ -233,3 +233,10 @@ models/*
 # macOS & Jupyter
 .DS_Store
 .ipynb_checkpoints/
+
+# MLflow local tracking
+mlruns/
+mlflow.db
+
+# CatBoost training logs
+catboost_info/
