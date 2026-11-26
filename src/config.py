@@ -9,6 +9,7 @@ MODELS_DIR = PROJECT_ROOT / "models"
 # Files
 TRAIN_FILE = DATA_RAW_DIR / "application_train.csv"
 PROCESSED_TRAIN_FILE = DATA_PROCESSED_DIR / "train_features.parquet"
+PROCESSED_TRAIN_V2_FILE = DATA_PROCESSED_DIR / "train_features_v2.parquet"
 
 # MLflow tracking
 MLFLOW_TRACKING_URI = f"sqlite:///{PROJECT_ROOT / 'mlflow.db'}"

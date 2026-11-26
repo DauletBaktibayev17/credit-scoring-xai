@@ -23,6 +23,7 @@ from src.config import (
     MODELS_DIR,
     N_FOLDS,
     PROCESSED_TRAIN_FILE,
+    PROCESSED_TRAIN_V2_FILE,
     RANDOM_STATE,
     TARGET_COL,
 )
@@ -149,8 +150,9 @@ def train_catboost_fold(
 
 
 def run_training(model_name: str, feature_version: str = "v1_app_only") -> None:
-    print(f"Loading processed dataset from {PROCESSED_TRAIN_FILE}...")
-    df = pd.read_parquet(PROCESSED_TRAIN_FILE)
+    data_path = PROCESSED_TRAIN_V2_FILE if feature_version.startswith("v2") else PROCESSED_TRAIN_FILE
+    print(f"Loading processed dataset from {data_path}...")
+    df = pd.read_parquet(data_path)
 
     feature_cols = [c for c in df.columns if c not in {ID_COL, TARGET_COL}]
     cat_cols = list(df[feature_cols].select_dtypes(include="category").columns)

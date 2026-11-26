@@ -1,7 +1,16 @@
+import argparse
+
 import numpy as np
 import pandas as pd
 
-from src.config import DATA_PROCESSED_DIR, PROCESSED_TRAIN_FILE, TRAIN_FILE
+from src.config import (
+    DATA_PROCESSED_DIR,
+    DATA_RAW_DIR,
+    PROCESSED_TRAIN_FILE,
+    PROCESSED_TRAIN_V2_FILE,
+    TRAIN_FILE,
+)
+from src.features_relational import merge_all_relational_features
 
 EXT_SOURCE_COLS = ["EXT_SOURCE_1", "EXT_SOURCE_2", "EXT_SOURCE_3"]
 ADDRESS_MISMATCH_COLS = [
@@ -102,18 +111,34 @@ def preprocess_application(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
-def main() -> None:
+def main(version: str = "v1") -> None:
     print(f"Loading raw data from {TRAIN_FILE}...")
     raw_df = pd.read_csv(TRAIN_FILE)
     print(f"Raw shape: {raw_df.shape}")
 
     processed_df = preprocess_application(raw_df)
-    print(f"Processed shape: {processed_df.shape}")
 
+    if version == "v2":
+        print("Building and merging relational features (v2)...")
+        processed_df = merge_all_relational_features(processed_df, DATA_RAW_DIR)
+        out_path = PROCESSED_TRAIN_V2_FILE
+    else:
+        out_path = PROCESSED_TRAIN_FILE
+
+    print(f"Processed shape ({version}): {processed_df.shape}")
     DATA_PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
-    processed_df.to_parquet(PROCESSED_TRAIN_FILE, index=False)
-    print(f"Saved processed dataset to {PROCESSED_TRAIN_FILE}")
+    processed_df.to_parquet(out_path, index=False)
+    print(f"Saved processed dataset to {out_path}")
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Build processed training features.")
+    parser.add_argument(
+        "--version",
+        type=str,
+        default="v1",
+        choices=["v1", "v2"],
+        help="Feature pipeline version: v1 (application only) or v2 (+ relational tables).",
+    )
+    args = parser.parse_args()
+    main(version=args.version)
