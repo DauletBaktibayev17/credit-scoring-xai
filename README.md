@@ -2,7 +2,7 @@
 
 End-to-end credit risk scoring pipeline built on the Home Credit Default Risk dataset (~307k loan applications and ~58M relational credit history records across 7 tables). The project covers relational feature engineering, 5-fold stratified validation, experiment tracking with MLflow, Optuna hyperparameter tuning, probability blending, TreeSHAP explainability with grouped Adverse Action Reason Codes, and containerized deployment via FastAPI and Streamlit.
 
-![Streamlit XAI Dashboard](reports/figures/streamlit_demo.png)
+![Streamlit XAI Dashboard](reports/figures/streamlit_demo.jpeg)
 
 ---
 
@@ -17,7 +17,7 @@ End-to-end credit risk scoring pipeline built on the Home Credit Default Risk da
 | `v2_relational` | LightGBM | `0.79353` | `0.58706` | `0.44395` | `0.28893` | `0.06546` | 322 |
 | `v2_relational` | CatBoost | `0.79390` | `0.58781` | `0.44557` | `0.28885` | `0.06544` | 322 |
 | `v2_relational` | Blend (`47.2%` LGBM + `52.8%` CatBoost) | `0.79570` | `0.59141` | `0.44824` | `0.29258` | `0.06526` | 322 |
-| `v3_tuned` | LightGBM (Optuna + Gain Feature Selection) | `0.79574` | `0.59148` | — | — | — | 220 |
+| `v3_tuned` | LightGBM (Optuna + Gain Feature Selection) | `0.79574` | `0.59148` | `0.44888` | `0.29177` | `0.06529` | 220 |
 | `v3_final` | **Blend (`63.3%` LGBM v3 + `36.7%` CatBoost v2)** | **`0.79665`** | **`0.59331`** | **`0.45014`** | **`0.29371`** | **`0.06519`** | 220 / 322 |
 
 **Highlights:**

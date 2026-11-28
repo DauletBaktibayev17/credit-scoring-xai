@@ -275,7 +275,7 @@ def main() -> None:
                 {"Iteration": "v2_relational", "Model": "LogReg (optbinning)", "ROC-AUC": 0.77629, "Gini": 0.55257, "KS": 0.41554, "Brier": 0.06679, "Features": 112},
                 {"Iteration": "v2_relational", "Model": "LightGBM", "ROC-AUC": 0.79353, "Gini": 0.58706, "KS": 0.44395, "Brier": 0.06546, "Features": 322},
                 {"Iteration": "v2_relational", "Model": "CatBoost", "ROC-AUC": 0.79390, "Gini": 0.58781, "KS": 0.44557, "Brier": 0.06544, "Features": 322},
-                {"Iteration": "v3_tuned", "Model": "LightGBM (Optuna, Top 220)", "ROC-AUC": 0.79574, "Gini": 0.59148, "KS": 0.44800, "Brier": 0.06526, "Features": 220},
+                {"Iteration": "v3_tuned", "Model": "LightGBM (Optuna, Top 220)", "ROC-AUC": 0.79574, "Gini": 0.59149, "KS": 0.44888, "Brier": 0.06529, "Features": 220},
                 {"Iteration": "v3_final", "Model": "Blend (63% LGBM v3 + 37% CB v2)", "ROC-AUC": 0.79665, "Gini": 0.59331, "KS": 0.45014, "Brier": 0.06519, "Features": 322},
             ]
         )
