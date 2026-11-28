@@ -240,3 +240,4 @@ mlflow.db
 
 # CatBoost training logs
 catboost_info/
+submissions/
